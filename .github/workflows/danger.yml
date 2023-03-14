@@ -5,9 +5,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
   steps:
-    - uses: actions/checkout@master
+    - name: Checkout Code
+      uses: actions/checkout@v3
     - name: Use Node.js 10.x
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v3
       with: null
       node-version: 10.x
     - name: install yarn
