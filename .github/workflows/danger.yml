@@ -1,24 +1,15 @@
-name: Node CI
+name: Danger
+
 on:
   - pull_request
+
 jobs:
-  test:
+    build:
+    name: Danger JS
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-      - name: Use Node.js 10.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: install yarn
-        run: npm install -g yarn
-      - name: yarn install, build, and test
-        run: |
-          yarn install  --frozen-lockfile
-          yarn build
-          yarn test
-      - name: Danger
-        run: yarn danger ci
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: actions/checkout@v1
+    - name: Danger
+  uses: danger/danger-js@9.1.6
+  env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}   
